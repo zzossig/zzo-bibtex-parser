@@ -7,7 +7,7 @@ install_requires = ['bibtexparser==1.1.0']
 
 setuptools.setup(
     name="zzo-bibtex-parser",
-    version="1.0.0",
+    version="1.0.2",
     license="WTFPL",
     author="zzossig",
     author_email="zzossig@gmail.com",

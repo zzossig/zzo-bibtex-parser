@@ -30,7 +30,7 @@ def parse(args):
             for key in dic:
                 # delete { } \ from value
                 parsed_dict = re.sub('[{}\\\\]', '', dic[key])
-                if key != 'file' and key != 'ID':
+                if key != 'file' and key != 'ID' and key != 'urldate' and key != 'language':
                     if key == 'author':
                         authors = parsed_dict.split('and')
                         result.append(f'authors: {authors}')
@@ -38,9 +38,12 @@ def parse(args):
                         keywords = parsed_dict.split(',')
                         result.append(f'keywords: {keywords}')
                     elif key == 'url':
-                        result.append(f'link: {parsed_dict}')
+                        result.append(f'link: "{parsed_dict}"')
+                    elif key == 'journal':
+                        result.append(f'publication: "{parsed_dict}"')
                     else:
-                        result.append(f'{key}: "{parsed_dict}"')
+                        doubleQuoteEscape = parsed_dict.replace('"', '\\"')
+                        result.append(f'{key}: "{doubleQuoteEscape}"')
 
             result.append('---')
 
