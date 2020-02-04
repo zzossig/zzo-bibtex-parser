@@ -37,6 +37,8 @@ def parse(args):
                     elif key == 'keywords':
                         keywords = parsed_dict.split(',')
                         result.append(f'keywords: {keywords}')
+                    elif key == 'url':
+                        result.append(f'link: {parsed_dict}')
                     else:
                         result.append(f'{key}: "{parsed_dict}"')
 
