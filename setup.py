@@ -22,6 +22,7 @@ setuptools.setup(
         'console_scripts': [ 
             'zzo = zzo.parser:main'
         ],
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
