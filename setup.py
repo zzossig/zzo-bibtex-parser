@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 install_requires = ['bibtexparser==1.1.0']
 
 setuptools.setup(
-    name="zzo-bibtex-importer",
+    name="zzo-bibtex-parser",
     version="1.0.0",
     license="WTFPL",
     author="zzossig",
@@ -14,9 +14,7 @@ setuptools.setup(
     description="bibtex importer for hugo zzo theme",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/zzossig/zzo-bibtex-importer",
-    download_url=
-    "https://github.com/zzossig/zzo-bibtex-importer/archive/1.0.0.tar.gz",
+    url="https://github.com/zzossig/zzo-bibtex-parser",
     packages=setuptools.find_packages(),
     entry_points ={ 
         'console_scripts': [ 

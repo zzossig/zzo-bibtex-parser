@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: zzo-bibtex-parser
+Version: 1.0.0
+Summary: bibtex importer for hugo zzo theme
+Home-page: https://github.com/zzossig/zzo-bibtex-parser
+Author: zzossig
+Author-email: zzossig@gmail.com
+License: WTFPL
+Description: This program parse a .bib file and make new files(index.md, cite.bib) for using zzo theme blog
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown

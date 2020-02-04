@@ -1,0 +1,11 @@
+README.md
+setup.cfg
+setup.py
+zzo/__init__.py
+zzo/parser.py
+zzo_bibtex_parser.egg-info/PKG-INFO
+zzo_bibtex_parser.egg-info/SOURCES.txt
+zzo_bibtex_parser.egg-info/dependency_links.txt
+zzo_bibtex_parser.egg-info/entry_points.txt
+zzo_bibtex_parser.egg-info/requires.txt
+zzo_bibtex_parser.egg-info/top_level.txt
