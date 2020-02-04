@@ -7,17 +7,23 @@ install_requires = ['bibtexparser==1.1.0']
 
 setuptools.setup(
     name="zzo-bibtex-importer",
-    version="0.0.1",
+    version="1.0.0",
+    license="WTFPL",
     author="zzossig",
     author_email="zzossig@gmail.com",
     description="bibtex importer for hugo zzo theme",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/zzossig/zzo-bibtex-importer",
+    download_url=
+    "https://github.com/zzossig/zzo-bibtex-importer/archive/1.0.0.tar.gz",
     packages=setuptools.find_packages(),
+    entry_points ={ 
+        'console_scripts': [ 
+            'zzo = zzo.parser:main'
+        ],
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: WTFPL License",
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
