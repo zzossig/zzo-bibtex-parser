@@ -3,7 +3,7 @@
 import sys
 import os
 import re
-import calendar
+import datetime
 import argparse
 from time import strptime
 import bibtexparser
@@ -30,6 +30,7 @@ def parse(args):
             year = '0000'
             month = '01'
             day = '01'
+            entry_type = 'misc'
             result = ['---']
 
             for key in dic:
@@ -52,6 +53,10 @@ def parse(args):
                         month = month_string_to_number(parsed_dict)
                     elif key == 'day':
                         day = parsed_dict
+                    elif key == 'ENTRYTYPE':
+                        doubleQuoteEscape = parsed_dict.replace('"', '\\"')
+                        result.append(f'{key}: "{doubleQuoteEscape}"')
+                        entry_type = doubleQuoteEscape
                     else:
                         doubleQuoteEscape = parsed_dict.replace('"', '\\"')
                         result.append(f'{key}: "{doubleQuoteEscape}"')
@@ -63,18 +68,34 @@ def parse(args):
             if dic['ID']:
                 # md file
                 renamedDir = re.sub(r'(?<!^)(?=[A-Z])', '_', dic['ID']).lower()
-                filename = f"content/publication/{renamedDir}/index.md"
+                filename = f"content/publication/{entry_type}/{renamedDir}/index.md"
+                listfilename = f"content/publication/{entry_type}/_index.md"
                 dirname = os.path.dirname(filename)
+                listdirname = os.path.dirname(listfilename)
+
                 if not os.path.exists(dirname):
                     os.makedirs(dirname)
                 with open(filename, 'w', encoding='utf8') as file:
                     file.write('\n'.join(result))
 
+                if not os.path.exists(listdirname):
+                    os.makedirs(listdirname)
+                with open(listfilename, 'w', encoding='utf8') as listfile:
+                    listdata = [
+                        '---',
+                        f'title: {entry_type}',
+                        f'date: {datetime.datetime.now()}',
+                        f'description: Publication - {entry_type}',
+                        '---'
+                    ]
+                    listfile.write('\n'.join(listdata))
+
+
                 # bib file
                 db = BibDatabase()
                 db.entries = [dic]
                 writer = BibTexWriter()
-                with open(f"content/publication/{renamedDir}/cite.bib", 'w', encoding='utf8') as bibfile:
+                with open(f"content/publication/{entry_type}/{renamedDir}/cite.bib", 'w', encoding='utf8') as bibfile:
                     bibfile.write(writer.write(db))
             else:
                 print('There is no ID')

@@ -7,7 +7,7 @@ install_requires = ['bibtexparser==1.1.0']
 
 setuptools.setup(
     name="zzo-bibtex-parser",
-    version="1.0.3",
+    version="1.0.5",
     license="WTFPL",
     author="zzossig",
     author_email="zzossig@gmail.com",
@@ -16,7 +16,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/zzossig/zzo-bibtex-parser",
     packages=setuptools.find_packages(),
-    entry_points ={ 
+    entry_points ={
         'console_scripts': [ 
             'zzo = zzo.parser:main'
         ],
