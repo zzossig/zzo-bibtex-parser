@@ -44,8 +44,7 @@ def parse(args):
                         keywords = parsed_dict.split(',')
                         result.append(f'keywords: {keywords}')
                     elif key == 'url':
-                        links = [{"name": f'url', "link": f'{parsed_dict}'}]
-                        result.append(f'links: {str(links)}')
+                        result.append(f'links:\n - name: url\n   link: {parsed_dict})')
                     elif key == 'journal':
                         result.append(f'publication: "{parsed_dict}"')
                     elif key == 'year':
@@ -64,7 +63,7 @@ def parse(args):
             
             result.append(f'enableToc: {False}')
             result.append(f'enableWhoami: {True}')
-            result.append(f'pinned: {True if is_current_year(year) else False}')
+            result.append(f'pinned: {True if is_current_year(int(year)) else False}')
             result.append(f'publishDate: "{year}-{month}-{day}"')
             result.append('---')
 
