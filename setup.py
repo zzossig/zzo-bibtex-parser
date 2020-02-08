@@ -7,7 +7,7 @@ install_requires = ['bibtexparser==1.1.0']
 
 setuptools.setup(
     name="zzo-bibtex-parser",
-    version="1.0.5",
+    version="1.0.6",
     license="WTFPL",
     author="zzossig",
     author_email="zzossig@gmail.com",
@@ -28,3 +28,7 @@ setuptools.setup(
     python_requires='>=3.6',
     install_requires=install_requires,
 )
+
+# python setup.py sdist
+# pip install twine
+# twine upload dist/*

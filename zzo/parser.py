@@ -44,7 +44,8 @@ def parse(args):
                         keywords = parsed_dict.split(',')
                         result.append(f'keywords: {keywords}')
                     elif key == 'url':
-                        result.append(f'link: "{parsed_dict}"')
+                        links = [{"name": f'url', "link": f'{parsed_dict}'}]
+                        result.append(f'links: {str(links)}')
                     elif key == 'journal':
                         result.append(f'publication: "{parsed_dict}"')
                     elif key == 'year':
@@ -60,7 +61,10 @@ def parse(args):
                     else:
                         doubleQuoteEscape = parsed_dict.replace('"', '\\"')
                         result.append(f'{key}: "{doubleQuoteEscape}"')
-
+            
+            result.append(f'enableToc: {False}')
+            result.append(f'enableWhoami: {True}')
+            result.append(f'pinned: {True if is_current_year(year) else False}')
             result.append(f'publishDate: "{year}-{month}-{day}"')
             result.append('---')
 
@@ -123,6 +127,10 @@ def month_string_to_number(string):
         return out
     except:
         raise ValueError('Not a month')
+
+def is_current_year(year):
+    now = datetime.datetime.now()
+    return now.year == year
 
 if __name__ == "__main__":
     main()
