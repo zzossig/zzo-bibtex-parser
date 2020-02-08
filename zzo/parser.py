@@ -7,6 +7,7 @@ import datetime
 import argparse
 from time import strptime
 import bibtexparser
+from bibtexparser.bparser import BibTexParser
 from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.bibdatabase import BibDatabase
 
@@ -24,7 +25,8 @@ def parse(args):
     else:
         # make list of dictionary for the data
         with open(args.path, 'r', encoding='utf8') as bibtex_file:
-            bib_database = bibtexparser.load(bibtex_file)
+            parser = BibTexParser(common_strings=True)
+            bib_database = bibtexparser.load(bibtex_file, parser=parser)
 
         for dic in bib_database.entries:
             year = '0000'
@@ -35,7 +37,9 @@ def parse(args):
 
             for key in dic:
                 # delete { } \ from value
-                parsed_dict = re.sub('[{}\\\\]', '', dic[key])
+                if (key != 'month'):
+                    parsed_dict = re.sub('[{}\\\\]', '', dic[key])
+
                 if key != 'file' and key != 'ID' and key != 'urldate' and key != 'language':
                     if key == 'author':
                         authors = parsed_dict.split('and')
@@ -50,7 +54,7 @@ def parse(args):
                     elif key == 'year':
                         year = parsed_dict
                     elif key == 'month':
-                        month = month_string_to_number(parsed_dict)
+                        month = month_string_to_number(dic[key])
                     elif key == 'day':
                         day = parsed_dict
                     elif key == 'ENTRYTYPE':
